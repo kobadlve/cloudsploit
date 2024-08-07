@@ -1,5 +1,6 @@
 var fs = require('fs');
 var ttytable = require('tty-table');
+const { recommended_action } = require('../plugins/google/bigquery/datasetAllUsersPolicy');
 
 function exchangeStatusWord(result) {
     if (result.status === 0) return 'OK';
@@ -135,6 +136,9 @@ module.exports = {
                     category: plugin.category,
                     title: plugin.title,
                     description: plugin.description,
+                    sererity: plugin.severity,
+                    more_info: plugin.more_info,
+                    recommended_action: plugin.recommended_action,
                     resource: result.resource || 'N/A',
                     region: result.region || 'Global',
                     status: exchangeStatusWord(result),
