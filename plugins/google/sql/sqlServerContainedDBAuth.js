@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'SQL Server Contained Database Authentication Flag Disabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that all SQL Server database instances have contained database authentication flag disabled.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.update','cloudsql.instances.delete','cloudsql.instances.create'],
+    compliance: {
+        cis3: '6.3.6 Ensure that the contained database authentication database flag for Cloud SQL on the SQL Server instance is not set to on'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

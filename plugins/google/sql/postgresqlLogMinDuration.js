@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Log Min Duration Statement',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that log_min_duration_statement flag is disabled for all PostgreSQL instances.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.7 Ensure That the Log_min_duration_statement Database Flag for Cloud SQL PostgreSQL Instance Is Set to -1 (Disabled)'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

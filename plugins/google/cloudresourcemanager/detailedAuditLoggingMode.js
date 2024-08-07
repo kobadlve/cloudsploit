@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./essentialContactsConfigured');
 
 module.exports = {
     title: 'Detailed Audit Logging Mode',
@@ -16,6 +17,9 @@ module.exports = {
     actions: {remediate:['SetOrgPolicy'], rollback:['SetOrgPolicy']},
     permissions: {remediate: ['orgpolicy.policy.set'], rollback: ['orgpolicy.policy.set']},
     realtime_triggers: ['SetOrgPolicy'],
+    compliance: {
+        cis3: '2.3 Ensure That Retention Policies on Cloud Storage Buckets Used for Exporting Logs Are Configured Using Bucket Lock'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

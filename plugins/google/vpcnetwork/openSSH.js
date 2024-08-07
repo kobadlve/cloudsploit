@@ -12,6 +12,9 @@ module.exports = {
     recommended_action: 'Restrict TCP port 22 to known IP addresses.',
     apis: ['firewalls:list'],
     realtime_triggers: ['compute.firewalls.insert', 'compute.firewalls.delete', 'compute.firewalls.patch'],
+    compliance: {
+        cis3: '3.6 Ensure That SSH Access Is Restricted From the Internet',
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

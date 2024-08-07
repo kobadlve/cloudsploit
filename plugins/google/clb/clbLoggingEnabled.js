@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'CLB Logging Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Enable logging for all HTTP(s) load balancers from the network services console.',
     apis: ['backendServices:list'],
     realtime_triggers: ['compute.backendServices.patch','compute.backendServices.insert','compute.backendServices.delete'],
+    compliance: {
+        cis3: '2.16 Ensure Logging is enabled for HTTP(S) Load Balancer'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

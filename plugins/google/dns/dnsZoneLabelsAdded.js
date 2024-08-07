@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./dnsSecEnabled');
 
 module.exports = {
     title: 'DNS Zone Labels Added',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure labels are added for all managed zones in the cloud DNS service.',
     apis: ['managedZones:list'],
     realtime_triggers : ['dns.managedZones.create, dns.managedZones.delete', 'dns.managedZones.patch'],
+    compliance: {
+        cis3: '3.5 Ensure That RSASHA1 Is Not Used for the Zone-Signing Key in Cloud DNS DNSSEC'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

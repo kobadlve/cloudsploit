@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Log Disconnections Flag Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that log disconnections flag is enabled for all PostgreSQL instances.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.3 Ensure That the Log_disconnections Database Flag for Cloud SQL PostgreSQL Instance Is Set to On'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Asset Inventory Enabled',
@@ -11,6 +12,9 @@ module.exports = {
     recommended_action: 'Enable Asset Inventory service for the GCP project.',
     apis: ['projects:getWithNumber', 'services:listEnabled'],
     realtime_triggers: ['compute.projects.insert', 'compute.projects.delete'],
+    compliance: {
+        cis3: '2.13 Ensure Cloud Asset Inventory Is Enabled'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

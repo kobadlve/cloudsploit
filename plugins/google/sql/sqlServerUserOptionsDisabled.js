@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'SQL Server User Options Flag Disabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that all SQL Server database instances do not have user options flag configured.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.update','cloudsql.instances.delete','cloudsql.instances.create'],
+    compliance: {
+        cis3: '6.3.3 Ensure user options database flag for Cloud SQL SQL Server instance is not configured'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

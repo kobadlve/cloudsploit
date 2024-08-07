@@ -15,7 +15,8 @@ module.exports = {
             'Enabling encryption of disk data helps to protect this data.',
         pci: 'PCI requires proper encryption of cardholder data at rest. ' +
             'Encryption should be enabled for all disks storing this ' +
-            'type of data.'
+            'type of data.',
+        cis3: '4.7 Ensure VM Disks for Critical VMs Are Encrypted With Customer-Supplied Encryption Keys (CSEK)'
     },
     realtime_triggers: ['compute.disks.insert','compute.disks.delete'],
 

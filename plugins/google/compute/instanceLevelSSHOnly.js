@@ -1,5 +1,6 @@
 var async   = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./instanceDefaultServiceAccount');
 
 module.exports = {
     title: 'Instance Level SSH Only',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure project-wide SSH keys are blocked for all instances.',
     apis: ['compute:list'],
     realtime_triggers: ['compute.instances.insert', 'compute.instances.delete', 'compute.instances.setMetadata'],
+    compliance: {
+        cis3: '4.3 Ensure “Block Project-Wide SSH Keys” Is Enabled for VM Instances'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

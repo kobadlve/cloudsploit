@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'SQL Server Trace Flag Disabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that all SQL Server database instances have 3625 (trace flag) set to disabled.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.update','cloudsql.instances.delete','cloudsql.instances.create'],
+    compliance: {
+        cis3: '6.3.5 Ensure 3625 (trace flag) database flag for all Cloud SQL Server instances is set to on'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -1,5 +1,6 @@
 var async   = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./instanceDefaultServiceAccount');
 
 module.exports = {
     title: 'Instance Public Access Disabled',
@@ -13,6 +14,9 @@ module.exports = {
     recommended_action: 'Modify compute instances and set External IP to None for network interface',
     apis: ['compute:list'],
     realtime_triggers: ['compute.instances.insert', 'compute.instances.delete', 'compute.instances.updateNetworkInterface'],
+    compliance: {
+        cis3: '4.9 Ensure That Compute Instances Do Not Have Public IP Addresses'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./openSSH');
 
 module.exports = {
     title: 'VPC DNS Logging Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Create Cloud DNS Server Policy with logging enabled for VPC Networks',
     apis: ['networks:list', 'policies:list'],
     realtime_triggers: ['compute.networks.insert' , 'compute.networks.delete', 'dns.policies.create', 'dns.policies.patch', 'compute.networks.patch', 'dns.policies.delete'],
+    compliance: {
+        cis3: '2.12 Ensure That Cloud DNS Logging Is Enabled for All VPC Networks'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

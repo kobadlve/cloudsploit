@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Log Min Error Statement',
@@ -20,6 +21,9 @@ module.exports = {
         }
     },
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.6 Ensure Log_min_error_statement Database Flag for Cloud SQL PostgreSQL Instance Is Set to Error or Stricter'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

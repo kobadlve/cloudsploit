@@ -1,5 +1,7 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compareVersions } = require('../../../helpers/shared');
+const { compliance } = require('./dnsSecEnabled');
 
 module.exports = {
     title: 'DNS Security Signing Algorithm',
@@ -12,6 +14,10 @@ module.exports = {
     recommended_action: 'Ensure that all managed zones using DNSSEC are not using the RSASHA1 algorithm for key or zone signing.',
     apis: ['managedZones:list'],
     realtime_triggers : ['dns.managedZones.create, dns.managedZones.delete', 'dns.managedZones.patch'],
+    compliance: {
+        cis3: '3.4 Ensure That RSASHA1 Is Not Used for the Key-Signing Key in Cloud DNS DNSSEC'
+    },
+
     run: function(cache, settings, callback) {
         var results = [];
         var source = {};

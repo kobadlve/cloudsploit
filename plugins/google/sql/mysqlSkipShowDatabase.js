@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'MySQL Skip Show Database Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that skip show database flag is enabled for all MySQL instances.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.1.2 Ensure Skip_show_database Database Flag for Cloud SQL MySQL Instance Is Set to On'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

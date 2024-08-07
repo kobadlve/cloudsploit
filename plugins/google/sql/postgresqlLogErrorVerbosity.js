@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Log Error Verbosity',
@@ -20,6 +21,9 @@ module.exports = {
         }
     },
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.1 Ensure Log_error_verbosity Database Flag for Cloud SQL PostgreSQL Instance Is Set to DEFAULT or Stricter'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

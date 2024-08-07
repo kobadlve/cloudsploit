@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'API Key Active Services Only',
@@ -10,6 +11,9 @@ module.exports = {
     link: 'https://cloud.google.com/docs/authentication/api-keys',
     recommended_action: 'Ensure that API Keys only exist for active services.',
     apis: ['projects:getWithNumber', 'apiKeys:list', 'services:listEnabled'],
+    compliance: {
+        cis3: '1.12 Ensure API Keys Only Exist for Active Services'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

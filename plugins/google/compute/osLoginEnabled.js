@@ -14,7 +14,8 @@ module.exports = {
     compliance: {
         pci: 'PCI recommends implementing additional security features for ' +
             'any required service. This includes using secured technologies ' +
-            'such as SSH.'
+            'such as SSH.',
+        cis3: '4.4 Ensure Oslogin Is Enabled for a Project'
     },
     realtime_triggers: ['compute.projects.insert', 'compute.projects.delete'],
 

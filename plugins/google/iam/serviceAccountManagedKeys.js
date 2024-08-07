@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./corporateEmailsOnly');
 
 module.exports = {
     title: 'Service Account Managed Keys',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure all user service account keys are being managed by Google.',
     apis: ['serviceAccounts:list','keys:list'],
     realtime_triggers: ['iam.admin.CreateServiceAccountKey', 'iam.admin.CreateServiceAccount','iam.admin.DeleteServiceAccountKey', 'iam.admin.DeleteServiceAccount'],
+    compliance: {
+        cis3: '1.4 Ensure That There Are Only GCP-Managed Service Account Keys for Each Service Account'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'SQL Cross DB Ownership Chaining',
@@ -13,6 +14,9 @@ module.exports = {
     recommended_action: 'Ensure that cross DB ownership chaining flag is disabled for all SQLServer instances.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.3.1 Ensure that the cross db ownership chaining database flag for Cloud SQL SQL Server instance is set to off'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

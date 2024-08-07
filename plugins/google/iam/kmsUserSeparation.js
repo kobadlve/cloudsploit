@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./serviceAccountAdmin');
 
 module.exports = {
     title: 'KMS User Separation',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that no service accounts have both the KMS admin role and any of CryptoKey roles attached.',
     apis: ['projects:getIamPolicy'],
     realtime_triggers: ['iam.IAMPolicy.SetIamPolicy'],
+    compliance: {
+        cis3: '1.11 Ensure That Separation of Duties Is Enforced While Assigning KMS Related Roles to Users'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

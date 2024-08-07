@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./auditLoggingEnabled');
 
 module.exports = {
     title: 'Log Sinks Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure a log sink is configured properly with an empty filter and a destination.',
     apis: ['sinks:list', 'buckets:list'],
     realtime_triggers: ['storage.buckets.create', 'storage.buckets.delete', 'logging.ConfigServiceV2.CreateSink' , 'logging.ConfigServiceV2.DeleteSink', 'logging.ConfigServiceV2.UpdateSink'],
+    compliance: {
+        cis3: '2.2 Ensure That Sinks Are Configured for All Log Entries'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./datasetAllUsersPolicy');
 
 module.exports = {
     title: 'Dataset Labels Added',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure labels are added to all BigQuery datasets.',
     apis: ['datasets:list'],
     realtime_triggers:['bigquery.DatasetService.InsertDataset','bigquery.DatasetService.UpdateDataset','bigquery.DatasetService.DeleteDataset'],
+    compliance: {
+        cis3: '7.4 Ensure all data in BigQuery has been classified'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

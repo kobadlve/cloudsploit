@@ -1,5 +1,6 @@
 var async   = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./instanceDefaultServiceAccount');
 
 module.exports = {
     title: 'Connect Serial Ports Disabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure the Enable Connecting to Serial Ports option is disabled for all compute instances.',
     apis: ['compute:list'],
     realtime_triggers: [ 'compute.instances.insert', 'compute.instances.delete', 'compute.instances.setMetadata'],
+    compliance: {
+        cis3: '4.5 Ensure ‘Enable Connecting to Serial Ports’ Is Not Enabled for VM Instance'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

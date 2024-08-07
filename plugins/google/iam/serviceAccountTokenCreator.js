@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./serviceAccountAdmin');
 
 module.exports = {
     title: 'Service Account Token Creator',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that no IAM user have Service Account Token Creator Role at GCP project level.',
     apis: ['projects:getIamPolicy'],
     realtime_triggers: ['iam.IAMPolicy.SetIamPolicy'],
+    compliance: {
+        cis3: '1.6 Ensure That IAM Users Are Not Assigned the Service Account User or Service Account Token Creator Roles at Project Level'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -27,7 +27,7 @@ parser.add_argument('--config', {
 
 parser.add_argument('--compliance', {
     help: 'Compliance mode. Only return results applicable to the selected program.',
-    choices: ['hipaa', 'cis', 'cis1', 'cis2', 'pci'],
+    choices: ['hipaa', 'cis', 'cis1', 'cis2', 'cis3', 'pci'],
     action: 'append'
 });
 parser.add_argument('--plugin', {

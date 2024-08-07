@@ -17,7 +17,8 @@ module.exports = {
             'helps ensure that any storage permissions changes, including permissions .' +
             'in the log storage bucket, are recorded.',
         hipaa: 'HIPAA requires the logging of all activity ' +
-            'including access and all actions taken.'
+            'including access and all actions taken.',
+        cis3: '2.10 Ensure That the Log Metric Filter and Alerts Exist for Cloud Storage IAM Permission Changes'
     },
     realtime_triggers: ['logging.MetricsServiceV2.CreateLogMetric', 'logging.MetricsServiceV2.DeleteLogMetric', 'storage.buckets.create', 'storage.buckets.delete'],
 

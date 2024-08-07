@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Storage Bucket All Users Policy',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that each storage bucket is configured so that no member is set to allUsers or allAuthenticatedUsers.',
     apis: ['buckets:list','buckets:getIamPolicy'],
     realtime_triggers: ['storage.buckets.create', 'storage.buckets.delete', 'storage.buckets.update'],
+    compliance: {
+        cis3: '5.1 Ensure That Cloud Storage Bucket Is Not Anonymously or Publicly Accessible'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

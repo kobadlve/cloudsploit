@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Essential Contacts Configured',
@@ -11,6 +12,9 @@ module.exports = {
     recommended_action: 'Ensure Essential Contacts is configured for organization.',
     apis: ['organizations:list', 'organizations:essentialContacts'],
     realtime_triggers: ['SetOrgPolicy'],
+    compliance: {
+        cis3: '1.16 Ensure Essential Contacts is Configured for Organization'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

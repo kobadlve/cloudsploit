@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Service Account Admin',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that no service accounts have admin, owner, or write privileges.',
     apis: ['projects:getIamPolicy'],
     realtime_triggers: ['iam.IAMPolicy.SetIamPolicy'],
+    compliance: {
+        cis3: '1.5 Ensure That Service Account Has No Admin Privileges'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

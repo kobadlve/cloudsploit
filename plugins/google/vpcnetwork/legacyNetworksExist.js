@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./openSSH');
 
 module.exports = {
     title: 'Legacy Network Exists',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that there are no legacy networks in the GCP Project.',
     apis: ['networks:list'],
     realtime_triggers: ['compute.networks.insert', 'compute.networks.delete', 'compute.networks.patch'],
+    compliance: {
+        cis3: '3.2 Ensure Legacy Networks Do Not Exist for Older Projects'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

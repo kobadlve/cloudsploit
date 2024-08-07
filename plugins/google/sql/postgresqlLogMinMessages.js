@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Log Min Messages',
@@ -20,6 +21,9 @@ module.exports = {
         }
     },
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.5 Ensure that the Log_min_messages Flag for a Cloud SQL PostgreSQL Instance is set at minimum to Warning'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

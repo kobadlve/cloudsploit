@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./instanceDefaultServiceAccount');
 
 module.exports = {
     title: 'IP Forwarding Disabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'IP forwarding settings can only be chosen when creating a new instance. Delete the affected instances and redeploy with IP forwarding disabled.',
     apis: ['compute:list'],
     realtime_triggers: ['compute.instances.insert', 'compute.instances.delete'],
+    compliance: {
+        cis3: '4.6 Ensure That IP Forwarding Is Not Enabled on Instances'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

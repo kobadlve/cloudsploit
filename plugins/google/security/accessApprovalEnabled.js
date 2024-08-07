@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Access Approval Enabled',
@@ -11,6 +12,9 @@ module.exports = {
     recommended_action: 'Enable Access Approval for the GCP project.',
     apis: ['accessApproval:settings'],
     realtime_triggers: ['compute.projects.insert', 'compute.projects.delete'],
+    compliance: {
+        cis3: '2.15 Ensure Access Approval is Enabled'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

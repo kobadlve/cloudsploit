@@ -12,6 +12,9 @@ module.exports = {
     recommended_action: 'Ensure that root access for SQL instances are not allowed from any host.',
     apis: ['sql:list', 'users:list'],
     realtime_triggers: ['cloudsql.users.delete','cloudsql.users.create'],
+    compliance: {
+        cis3: '6.1.1 Ensure That a MySQL Database Instance Does Not Allow Anyone To Connect With Administrative Privileges'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

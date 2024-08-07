@@ -19,7 +19,8 @@ module.exports = {
             'controls around sensitive data.',
         pci: 'PCI requires backend services to be properly firewalled. ' +
             'Ensure SQL instances are not accessible from the Internet ' +
-            'and use proper jump box access mechanisms.'
+            'and use proper jump box access mechanisms.',
+        cis3: '6.5 Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses'
     },
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
 

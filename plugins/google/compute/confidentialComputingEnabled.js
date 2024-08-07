@@ -1,5 +1,6 @@
 var async   = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./instanceDefaultServiceAccount');
 
 module.exports = {
     title: 'Confidential Computing Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that all VM instances have confidential computing enabled.',
     apis: ['compute:list'],
     realtime_triggers: ['compute.instances.insert', 'compute.instances.delete'],
+    compliance: {
+        cis3: '4.11 Ensure That Compute Instances Have Confidential Computing Enabled'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

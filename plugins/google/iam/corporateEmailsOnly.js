@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Corporate Emails Only',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that no users are actively using their Gmail accounts to access GCP.',
     apis: ['projects:getIamPolicy'],
     realtime_triggers: ['iam.IAMPolicy.SetIamPolicy'],
+    compliance: {
+        cis3: '1.1 Ensure that Corporate Login Credentials are Used'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

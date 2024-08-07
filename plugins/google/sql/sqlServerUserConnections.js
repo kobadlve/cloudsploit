@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'SQL Server User Connections Flag',
@@ -21,6 +22,9 @@ module.exports = {
         }
     },
     realtime_triggers:['cloudsql.instances.update','cloudsql.instances.delete','cloudsql.instances.create'],
+    compliance: {
+        cis3: '6.3.2 Ensure user Connections Database Flag for Cloud SQL SQL Server Instance Is Set to a Non-limiting Value'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

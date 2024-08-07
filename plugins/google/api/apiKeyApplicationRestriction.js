@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./apiKeyActiveServices');
 
 module.exports = {
     title: 'API Key Application Restriction',
@@ -10,6 +11,9 @@ module.exports = {
     link: 'https://cloud.google.com/docs/authentication/api-keys#adding_application_restrictions',
     recommended_action: 'Ensure that Application restrictions are set for all Google Cloud API Keys.',
     apis: ['apiKeys:list'],
+    compliance: {
+        cis3: '1.13 Ensure API Keys Are Restricted To Use by Only Specified Hosts and Apps'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

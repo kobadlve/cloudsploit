@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Dataset All Users Policy',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that each dataset is configured so that no member is set to allUsers or allAuthenticatedUsers.',
     apis: ['datasets:list', 'datasets:get', 'projects:get'],
     realtime_triggers: ['iam.IAMPolicy.SetIamPolicy','bigquery.DatasetService.InsertDataset','bigquery.DatasetService.DeleteDataset'],
+    compliance: {
+        cis3: '7.1 Ensure That BigQuery Datasets Are Not Anonymously or Publicly Accessible'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

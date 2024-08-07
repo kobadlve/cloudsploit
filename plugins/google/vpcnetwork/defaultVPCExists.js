@@ -1,5 +1,7 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compareVersions } = require('../../../helpers/shared');
+const { compliance } = require('./openSSH');
 
 module.exports = {
     title: 'Default VPC Exists',
@@ -12,6 +14,9 @@ module.exports = {
     recommended_action: 'Delete the default network and create a new network with a different name.',
     apis: ['networks:list'],
     realtime_triggers: ['compute.networks.insert' , 'compute.networks.delete'],
+    compliance: {
+        cis3: '3.1 Ensure That the Default Network Does Not Exist in a Project'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

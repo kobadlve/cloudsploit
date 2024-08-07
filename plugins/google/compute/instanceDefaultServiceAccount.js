@@ -1,5 +1,7 @@
 var async   = require('async');
 var helpers = require('../../../helpers/google');
+const { compareVersions } = require('../../../helpers/shared');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Instance Default Service Account',
@@ -12,6 +14,9 @@ module.exports = {
     recommended_action: 'Make sure that compute instances are not using default service account',
     apis: ['compute:list', 'projects:get'],
     realtime_triggers: ['compute.projects.insert', 'compute.projects.delete', 'compute.instances.insert', 'compute.instances.delete', 'compute.instances.setservicezccount'],
+    compliance: {
+        cis3: '4.1 Ensure That Instances Are Not Configured To Use the Default Service Account'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

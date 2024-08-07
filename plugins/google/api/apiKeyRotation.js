@@ -1,4 +1,5 @@
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./apiKeyActiveServices');
 
 module.exports = {
     title: 'API Key Rotation',
@@ -23,6 +24,9 @@ module.exports = {
             regex: '^[1-9]{1}[0-9]{0,3}$',
             default: '90'
         }
+    },
+    compliance: {
+        cis3: '1.15 Ensure API Keys Are Rotated Every 90 Days'
     },
 
     run: function(cache, settings, callback) {

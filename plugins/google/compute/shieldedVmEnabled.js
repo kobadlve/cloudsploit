@@ -12,6 +12,9 @@ module.exports = {
     recommended_action: 'Enable the shielded VM for all the instances for security reasons.',
     apis: ['compute:list'],
     realtime_triggers: ['compute.instances.insert', 'compute.instances.delete', 'compute.instances.updateShieldedInstanceConfig'],
+    compliance: {
+        cis3: '4.8 Ensure Compute Instances Are Launched With Shielded VM Enabled'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

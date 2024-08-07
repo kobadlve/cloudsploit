@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'SQL No Public IPs',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Make sure that SQL databases IP addresses setting does not have IP address of PRIMARY type',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.6 Ensure That Cloud SQL Database Instances Do Not Have Public IPs'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'MySQL Local Infile Disabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that local infile flag is disabled for all MySQL instances.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.1.3 Ensure That the Local_infile Database Flag for a Cloud SQL MySQL Instance Is Set to Off'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

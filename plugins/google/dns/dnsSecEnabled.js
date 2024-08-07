@@ -1,5 +1,7 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compareVersions } = require('../../../helpers/shared');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'DNS Security Enabled',
@@ -12,6 +14,9 @@ module.exports = {
     recommended_action: 'Ensure DNSSEC is enabled for all managed zones in the cloud DNS service.',
     apis: ['managedZones:list'],
     realtime_triggers : ['dns.managedZones.create, dns.managedZones.delete', 'dns.managedZones.patch'],
+    compliance: {
+        cis3: '3.3 Ensure That DNSSEC Is Enabled for Cloud DNS'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

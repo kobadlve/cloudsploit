@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Pg Audit Flag Enabled',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that cloudsql.enable_pgaudit flag is enabled for all PostgreSQL instances.',
     apis: ['sql:list'],
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.8 Ensure That cloudsql.enable_pgaudit Database Flag for each Cloud SQL PostgreSQL Instance Is Set to on For Centralized Logging'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

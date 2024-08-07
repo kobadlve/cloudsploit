@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./bucketAllUsersPolicy');
 
 module.exports = {
     title: 'Bucket Uniform Level Access',
@@ -17,6 +18,9 @@ module.exports = {
     actions: {remediate:['storage.buckets.update'], rollback:['storage.buckets.update']},
     permissions: {remediate: ['storage.buckets.setIamPolicy', 'storage.buckets.update'], rollback: ['storage.buckets.setIamPolicy','storage.buckets.update']},
     realtime_triggers: ['storage.buckets.update', 'storage.buckets.create','storage.buckets.delete'],
+    compliance: {
+        cis3: '5.2 Ensure That Cloud Storage Buckets Have Uniform Bucket-Level Access Enabled'
+    },
   
     run: function(cache, settings, callback) {
         var results = [];

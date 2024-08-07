@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'KMS Public Access',
@@ -12,6 +13,9 @@ module.exports = {
     recommended_action: 'Ensure that your cryptographic keys are not accessible by allUsers or allAuthenticatedUsers.',
     apis: ['keyRings:list', 'cryptoKeys:list', 'cryptoKeys:getIamPolicy'],
     realtime_triggers: ['CreateKeyRing', 'CreateCryptoKey'],
+    compliance: {
+        cis3: '1.9 Ensure That Cloud KMS Cryptokeys Are Not Anonymously or Publicly Accessible'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

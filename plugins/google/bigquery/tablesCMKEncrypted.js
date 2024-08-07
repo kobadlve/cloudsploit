@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('./datasetAllUsersPolicy');
 
 module.exports = {
     title: 'Tables CMK Encrypted',
@@ -21,6 +22,9 @@ module.exports = {
         }
     },
     realtime_triggers: ['bigquery.TableService.InsertTable','bigquery.TableService.DeleteTable'],
+    compliance: {
+        cis3: '7.2 Ensure That All BigQuery Tables Are Encrypted With Customer-Managed Encryption Key (CMEK)'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

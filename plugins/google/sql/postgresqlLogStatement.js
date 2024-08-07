@@ -1,5 +1,7 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compareVersions } = require('../../../helpers/shared');
+const { compliance } = require('./anyHostRootAccess');
 
 module.exports = {
     title: 'PostgreSQL Log Statement',
@@ -20,6 +22,9 @@ module.exports = {
         }
     },
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
+    compliance: {
+        cis3: '6.2.4 Ensure Log_statement Database Flag for Cloud SQL PostgreSQL Instance Is Set Appropriately'
+    },
     
     run: function(cache, settings, callback) {
         var results = [];

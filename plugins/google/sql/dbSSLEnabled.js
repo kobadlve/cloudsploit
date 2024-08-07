@@ -17,6 +17,7 @@ module.exports = {
         hipaa: 'HIPAA requires all data to be transmitted over secure channels. ' +
             'Database SSL should be used to ensure SQL databases ' +
             'are always connecting through secure encryption.',
+        cis3: '6.4 Ensure That the Cloud SQL Database Instance Requires All Incoming Connections To Use SSL'
     },
     realtime_triggers:['cloudsql.instances.delete','cloudsql.instances.create','cloudsql.instances.update'],
 

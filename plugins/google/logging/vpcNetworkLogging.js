@@ -16,7 +16,8 @@ module.exports = {
             'in which cardholder data is present. VPC network logging ' +
             'helps audit all network changes.',
         hipaa: 'HIPAA requires the logging of all activity ' +
-            'including access and all actions taken.'
+            'including access and all actions taken.',
+        cis3: '2.9 Ensure That the Log Metric Filter and Alerts Exist for VPC Network Changes'
     },
     realtime_triggers: ['logging.MetricsServiceV2.CreateLogMetric', 'logging.MetricsServiceV2.DeleteLogMetric', 'compute.networks.insert', 'compute.networks.delete' ],
 

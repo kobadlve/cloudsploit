@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../bigquery/datasetAllUsersPolicy');
 
 module.exports = {
     title: 'Dataproc Cluster Encryption',
@@ -21,6 +22,9 @@ module.exports = {
         }
     },
     realtime_triggers: ['dataproc.ClusterController.CreateCluster', 'dataprocClusterController.DeleteCluster'],
+    compliance: {
+        cis3: '8.1 Ensure that Dataproc Cluster is encrypted using Customer-Managed Encryption Key'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];

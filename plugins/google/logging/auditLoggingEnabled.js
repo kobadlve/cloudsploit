@@ -1,5 +1,6 @@
 var async = require('async');
 var helpers = require('../../../helpers/google');
+const { compliance } = require('../vpcnetwork/openSSH');
 
 module.exports = {
     title: 'Audit Logging Enabled',
@@ -21,6 +22,9 @@ module.exports = {
         }
     },
     realtime_triggers: ['iam.IAMPolicy.SetIamPolicy', 'compute.projects.insert', 'compute.projects.delete, SetOrgPolicy'],
+    compliance: {
+        cis3: '2.1 Ensure That Cloud Audit Logging Is Configured Properly'
+    },
 
     run: function(cache, settings, callback) {
         var results = [];
