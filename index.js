@@ -79,6 +79,9 @@ parser.add_argument('--run-asl', {
     help: 'When set, it will execute custom plugins.',
     action: 'store_false'
 });
+parser.add_argument('--project-id', {
+    help: 'Google only. The project ID to run plugins for.',
+});
 
 let settings = parser.parse_args();
 let cloudConfig = {};
@@ -172,6 +175,9 @@ if (config.credentials.aws.credential_file && (!settings.cloud || (settings.clou
     settings.cloud = 'google';
     cloudConfig = loadHelperFile(config.credentials.google.credential_file);
     cloudConfig.project = cloudConfig.project_id;
+    if (settings.project_id) {
+        cloudConfig.project = settings.project_id;
+    }
 } else if (config.credentials.google.project && (!settings.cloud || (settings.cloud == 'google'))) {
     settings.cloud = 'google';
     checkRequiredKeys(config.credentials.google, ['client_email', 'private_key']);
