@@ -92,7 +92,7 @@ module.exports = {
      * @param {Object} settings The source settings object
      */
     createCsv: function(stream, settings) {
-        var headers = ['category', 'title', 'description',
+        var headers = ['plugin', 'category', 'title', 'description', 'severity', 'more_info', 'recommended_action',
             'resource', 'region', 'statusWord', 'message'];
         if (settings.compliance) headers.push('compliance');
         var csvWriter = require('csv-write-stream');
@@ -103,7 +103,9 @@ module.exports = {
             writer: writer,
         
             writeResult: function(result, plugin, pluginKey, complianceMsg) {
-                var toWrite = [plugin.category, plugin.title, commaSafe(plugin.description),
+                var toWrite = [pluginKey, plugin.category, plugin.title, commaSafe(plugin.description),
+                    commaSafe(plugin.severity), commaSafe(plugin.more_info),
+                    commaSafe(plugin.recommended_action),
                     (result.resource || 'N/A'),
                     (result.region || 'Global'),
                     exchangeStatusWord(result), commaSafe(result.message)];
