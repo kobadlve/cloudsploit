@@ -218,7 +218,11 @@ var run = function(GoogleConfig, collection, settings, service, callObj, callKey
 var handleErrors = function(err) {
     if (err.code) {
         if (err.code == 400) {
-            return 'Invalid argument, please contact support.';
+            if (err.response) {
+                return err.toString();
+            } else {
+                return 'Invalid argument, please contact support.';
+            }
         } else if (err.code == 401) {
             if (err.response && err.response.data && err.response.data.error_description) {
                 return err.response.data.error_description;
@@ -359,10 +363,18 @@ function makeApiCall(client, originalUrl, callCb, nextToken, config) {
     let url = originalUrl;
     let queryParams = '';
     if (config && config.pagination) {
-        queryParams = `${nextToken ? `?pageToken=${nextToken}` : ''}`;
+        if (url.indexOf("https://storage.googleapis.com/storage/v1/b?project") > -1) {
+            queryParams = `${nextToken ? `&pageToken=${nextToken}` : ''}`;
+        } else {
+            queryParams = `${nextToken ? `?pageToken=${nextToken}` : ''}`;
+        }
     }
     if (config && config.reqParams) {
-        queryParams = queryParams ? `${queryParams}&${config.reqParams}` : `?${config.reqParams}`;
+        if (url.indexOf("https://storage.googleapis.com/storage/v1/b?project") > -1) {
+            queryParams = queryParams ? `${queryParams}&${config.reqParams}` : `&${config.reqParams}`;
+        } else {
+            queryParams = queryParams ? `${queryParams}&${config.reqParams}` : `?${config.reqParams}`;
+        }
     }
     url = `${originalUrl}${queryParams}`;
     async.retry({
