@@ -138,7 +138,7 @@ module.exports = {
                     category: plugin.category,
                     title: plugin.title,
                     description: plugin.description,
-                    sererity: plugin.severity,
+                    severity: plugin.severity,
                     more_info: plugin.more_info,
                     recommended_action: plugin.recommended_action,
                     resource: result.resource || 'N/A',
